@@ -1,0 +1,76 @@
+/***** Curseurs colorés *****/
+.rs-cursor-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+.rs-cursor-ink {
+  width: calc(80% - 80px);
+  height: 20px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-right: 30px;
+  margin-left: 30px;
+  box-shadow: inset 1px 1px 1px;
+}
+
+.rs-cursor {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #969696;
+  border-radius: 50%;
+  box-shadow: 2px 2px 2px;
+  position: relative;
+  cursor: pointer;
+
+  background: rgb(255,255,255); /* Old browsers */
+  background: -moz-linear-gradient(left, #DCDCDC 0%, #DCDCDC 5%, #969696 20%, #DCDCDC 35%, #969696 50%, #DCDCDC 65%, #969696 80%, #DCDCDC 95%, #DCDCDC 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #DCDCDC 0%, #DCDCDC 5%, #969696 20%, #DCDCDC 35%, #969696 50%, #DCDCDC 65%, #969696 80%, #DCDCDC 95%, #DCDCDC 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #DCDCDC 0%, #DCDCDC 5%, #969696 20%, #DCDCDC 35%, #969696 50%, #DCDCDC 65%, #969696 80%, #DCDCDC 95%, #DCDCDC 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+  transform: translateY(-7px);
+  -ms-transform: translateY(-7px);
+  -webkit-transform: translateY(-7px);
+}
+/* lors du clic le relief est diminué --> ombre réduite et translation d'autant vers le bas */
+.rs-cursor:active { 
+  box-shadow: 1px 1px 1px;
+  transform: translateY(-6px);
+  -ms-transform: translateY(-6px);
+  -webkit-transform: translateY(-6px);
+}
+/* En lecture seule, le curseur est "lisse" */
+.rs-cursor.readonly { background: #969696; }
+/* En cas de dépassement d'une limite, le curseur devient rouge */
+.rs-cursor.error { 
+  background-color: #FF4422;
+  border-color: red;
+}
+
+.rs-cursor-title { 
+  margin-top: 8px; 
+  width: 20%;
+  font-size: 15px;
+  text-align: right;
+}
+
+.rs-cursor-input-field {
+  margin-top: 2px;
+  margin-right: 5px;
+  background-color: transparent;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  width: 40px;
+}
+
+/* On retire les boutons flèche */
+.rs-cursor-input-field::-webkit-outer-spin-button,
+.rs-cursor-input-field::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.rs-cursor-input-field { -moz-appearance:textfield; }

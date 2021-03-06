@@ -1,0 +1,82 @@
+/***** Carousel *****/
+.rs-carousel {
+  height: 200px;
+  margin-bottom: 40px;
+  cursor: url(../img/cursor.cur) 16 16, not-allowed;
+}
+
+/* Positionne le conteneur de pads en-dessous de la vue */
+.rs-pads-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 40px;
+  width: 100%;
+}
+
+/* Prend juste la largeur nécessaire pour afficher les pads en ligne */
+.rs-pads-sub-container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+/* Le pad en lui-même */
+.rs-pad {
+  cursor: pointer;
+  background-color: #41AFFF;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+/* Le lightener (montre quel pad est actif) */
+/* left: (5 + indice * 20)px; */
+.rs-pad-lightener {
+  transition: 0.5s left ease-in-out;
+  -ms-transition: 0.5s left ease-in-out;
+  -webkit-transition: 0.5s left ease-in-out;
+
+  position: absolute;
+  top: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #5558;
+  cursor: pointer;
+}
+
+/* La vue */
+.rs-carousel-content {
+  width: 100%;
+  height: 100%;
+
+  background-color: white;
+  position: relative;
+}
+
+/* Chaque news */
+.rs-carousel-content .rs-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  opacity: 0;
+  transition: 0.5s opacity ease-in-out;
+  -ms-transition: 0.5s opacity ease-in-out;
+  -webkit-transition: 0.5s opacity ease-in-out;
+}
+
+.rs-carousel-content .rs-content.active { 
+  opacity: 1; 
+  z-index: 1;
+}
