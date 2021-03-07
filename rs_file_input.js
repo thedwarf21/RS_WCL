@@ -1,27 +1,12 @@
-/*
-  Copyright © 10/02/2020, Roquefort Softwares Web Components Library
-
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this Library and associated 
-  documentation files (the “Software”), to deal in the Software without restriction, including without limitation 
-  the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
-  and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-  The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to 
-  the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the 
-  authors or copyright holders Roquefort Softwares be liable for any claim, damages or other liability, whether in 
-  an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or 
-  other dealings in the Software.
-  
-  Except as contained in this notice, the name of the Roquefort Softwares Web Components Library shall not be used 
-  in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written 
-  authorization from Roquefort Softwares.
-*/
-
 //---------------------------------------------------------------------------------------------------
 //                Champs FILE personnalisé avec vignette de prévisualisation 
 //---------------------------------------------------------------------------------------------------
+/**
+ * Attention, ça aussi c'est du lourd : tel que ce composant fonctionne, vous pouvez stocker l'image au format base64 en base de données... c'est fait pour
+ *
+ * Cela évite notamment de stocker les fichiers sélectionnés par l'utilisateur sur votre serveur web, 
+ * et donc de les uploader sous un nom barbare généré dynamiquement avec le risque de ne pas savoir à quoi chaque image correspond.
+ */
 /* Usage JS uniquement */
 class RS_FileInput extends HTMLDivElement {
 
