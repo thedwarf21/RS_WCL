@@ -42,7 +42,7 @@ La bibliothèque de fonctions est stockée au sein de 2 fichiers distincts :
 
 Pour des raisons de maintenabilité, j'ai stocké le code des composants dans des fichiers séparés. Si le code CSS doit rester séparé afin d'éviter d'alourdir le shadow DOM des composants, le code javascript peut (et devrait, en production, afin de réduire le temps de chargement initial) être regroupé au sein d'un seul et même fichier. Pour ce faire, il vous suffira de prendre en compte cet aspect dans votre script de déploiement. 
 
-Sous Linux, par exemple, il suffit de créer un fichier destiné à accueillir le script global. Une boucle **for** au sein de laquelle le **cat** du fichier courant est ajouté à la fin du fichier global, fera le travail.
+Sous Linux, par exemple, il suffit de créer un fichier destiné à accueillir le script global. Une boucle **for** au sein de laquelle le **cat** du fichier courant est ajouté à la fin du fichier global, fera le travail (évidemment, la boucle **for** devra ignorer le fichier global, dans son parcours).
 
 La plupart des composants de cette bibliothèque sont prévus pour pouvoir être utilisés aussi bien en tant que balises HTML qu'en tant que classe javascript héritant de **HTMLElement**. Pour rendre ceci possible, l'implémentation a été séparée en deux classes distinctes :
 
