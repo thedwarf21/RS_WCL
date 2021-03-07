@@ -26,7 +26,7 @@ Des améliorations sont évidemment nécessaires, cette bibliothèque étant en 
 
 # Fichiers
 
-Telle qu'elle est actuellement écrite, les fichiers de la bibliothèque doivent être ventilés d'une manière précise afin qu'elle puisse fonctionner. Ce point pourrait êter aisément améliorer par la définition d'une constante pour le chemin du répertoire contenant les fichiers CSS.
+Telle qu'elle est actuellement écrite, les fichiers de la bibliothèque doivent être ventilés d'une manière précise afin qu'elle puisse fonctionner. Ce point pourrait êter aisément amélioré par la définition d'une constante pour le chemin du répertoire contenant les fichiers CSS.
 
 * Les fichier CSS doivent être regroupés dans un répertoire nommé "css".
 * Les fichiers JS doivent être regroupés dans un autre répertoire, situé au même niveau d'arborescence que le répertoire "css".
