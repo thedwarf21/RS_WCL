@@ -1,4 +1,10 @@
 /**
+ * Inédit : ce composant permet d'afficher un message sur plusieurs faces d'un cube animés
+ * Le contenu des face est à ajouter sous forme de balses dans le contenu de la balise principale <rs-cube>
+ * La séquence est définissable via un attribut de la balise
+ */
+
+/**
  * Il serait intéressant de gérer les dimensions des contenus affichés :
  * Le cube devrait s'afficher en conséquence 
  *   => reporter size sur height et width sur l'élément .rs-cube
