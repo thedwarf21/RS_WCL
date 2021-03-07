@@ -1,3 +1,9 @@
+/**
+ * Ceci est l'outil ultime pour construire un back office en quatrième vitesse :
+ * Génère un tableau CRUD éditable à partir d'un objet. 
+ * Je peux fournir une classe d'exemple à utiliser avec, sur demande (intègre les appels AjaX aux API backend)
+ */
+
 //---------------------------------------------------------------------------------------------------
 //                                   Affichage d'un tableau CRUD
 //---------------------------------------------------------------------------------------------------
