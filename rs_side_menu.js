@@ -1,3 +1,11 @@
+/**
+ * Ce commposant est prévu pour être injecté dans un panneau lattéral:
+ * 
+ * <div class="menu-gauche">
+ *   <rs-side-menu rs-model="..."></rs-side-menu>
+ * </div>
+ */
+
 /***********************
  * Quelques constantes *
  ***********************/
