@@ -18,7 +18,7 @@ Le but de cette librairie est d'apporter les indispensables à l'application du 
 
 En effet, les standards ont suffisamment évolué et depuis suffisamment longtemps pour permettre de développer soi-même sa librairie de composants, sans que cette pratique ne soit réellement chronophage. De plus, travailler de la sorte permet de maîtriser son code de bout en bout, et donc de le faire évoluer au gré de ses besoins, sans devoir attendre une hypothétique mise à jour du framework.
 
-Les standards **EcmaScript 6 (2015)** permettent la création de composants web from scratch. Cette bibliothèque définit des fonctions permettant d'appliquer le **live binding** sur les composants web ainsi créer.
+Les standards **EcmaScript 6 (2015)** permettent la création de composants web from scratch. Cette bibliothèque définit des fonctions permettant d'appliquer le **live binding** sur les composants web ainsi créés.
 
 De cette manière, et sans besoin de framework, mettre en place une interface en s'appuyant sur MVC devient parfaitement naturel :
 
