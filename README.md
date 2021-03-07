@@ -1,10 +1,6 @@
 # RS_WCL
 Roquefort Softwares' Web Components Library
 
-# Licence MIT ?!
-
-N'ayez pas peur, ce n'est qu'un commentaire. Aucune disposition légale n'a réellement été prise pour protéger ce code, pas plus qu'il n'existe de copyright... j'ai simplement oublié de supprimer les commentaires d'entête qui n'étaient là que pour la blague, à l'origine.
-
 # But de cette librairie
 
 La tendance actuelle dans le web, consiste à utiliser des frameworks afin d'accélérer le développement tout en uniformisant les méthodes de travail.
