@@ -1,13 +1,3 @@
-/**
- * Ce commposant est prévu pour être injecté dans un panneau lattéral:
- * 
- * <div class="menu-gauche">
- *   <rs-side-menu rs-model="..."></rs-side-menu>
- * </div>
- *
- * ADDENDUM: après coup, on m'avait demandé un menu de bannière, à la place. J'en ai donc fait un menu horizontal, mais c'est surtout le CSS qui change.
- */
-
 //---------------------------------------------------------------------------------------------------
 //                                   Affichage d'un menu lattéral
 //---------------------------------------------------------------------------------------------------
