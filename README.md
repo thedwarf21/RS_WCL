@@ -22,7 +22,7 @@ De cette manière, et sans besoin de framework, mettre en place une interface en
 * **Vue** : Les composants web de cette librairie sont utilisables sous forme de balises HTML.
 * **Controller** : Le live binding intégré aux composant vous permettra de mettre à jour votre interface en ne modifiant que des objets javascript.
 
-Des améliorations sont évidemment nécessaires, cette bibliothèque étant en cours d'élaboration. Si je la partage aujourd'hui, c'est avant tout pour que les pratiques sur lesquelles elle s'appuie se démocratisent, de manière à optimiser au mieux vos créations web à venir.
+Des améliorations sont évidemment nécessaires, cette bibliothèque étant en cours d'élaboration. Si je la partage aujourd'hui, c'est avant tout pour que les pratiques sur lesquelles elle s'appuie se démocratisent, de manière à optimiser au mieux vos créations web à venir. J'avais initialement prévu d'attendre que le projet gagne en maturité avant de le diffuser, mais le temps me manque à présent.
 
 # Fichiers
 
