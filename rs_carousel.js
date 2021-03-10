@@ -1,5 +1,5 @@
 /**
- * Merci à Floran BAUDRY pour sa participation au développement de ce composant, dans le cadre de son stage en immersion pré-formation
+ * Merci à Florian BAUDRY pour sa participation au développement de ce composant, dans le cadre de son stage en immersion pré-formation
  */
 
 // Constantes spécifiques à ce composant
