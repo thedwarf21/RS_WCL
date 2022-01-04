@@ -1,21 +1,44 @@
+/*
+  Copyright © 10/02/2020, Roquefort Softwares Web Components Library
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this Library and associated 
+  documentation files (the “Software”), to deal in the Software without restriction, including without limitation 
+  the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+  and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+  The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to 
+  the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the 
+  authors or copyright holders Roquefort Softwares be liable for any claim, damages or other liability, whether in 
+  an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or 
+  other dealings in the Software.
+  
+  Except as contained in this notice, the name of the Roquefort Softwares Web Components Library shall not be used 
+  in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written 
+  authorization from Roquefort Softwares.
+*/
+
 //---------------------------------------------------------------------------------------------------
 //                               Boîte de dialogue personnalisée
 //---------------------------------------------------------------------------------------------------
 class RS_Dialog extends HTMLDivElement {
 
-  /**********************************************************************************
-   * Génère une boîte de dialogue et retourne l'objet destiné à recevoir le contenu *
-   **********************************************************************************
-   * @param | {string}  | id                 | ID à affecter à la popup             *
-   * @param | {string}  | title              | Titre à afficher en entête           *
-   * @param | {Array}   | bgClassList        | Liste des classes CSS du fond        *
-   * @param | {Array}   | containerClassList | Liste des classes CSS de la modale   *
-   * @param | {Array}   | classList          | Liste des classes CSS du contenu     *
-   * @param | {boolean} | showCloseBtn       | Permet de ne pas mettre de bouton X  *
-   **********************************************************************************
-   * @return              {DOMElement}               La DIV de contenu              *
-   **********************************************************************************/
-  constructor(id, title, bgClassList, containerClassList, classList, showCloseBtn) {
+  /*******************************************************************************************
+   * Génère une boîte de dialogue et retourne l'objet destiné à recevoir le contenu          *
+   *******************************************************************************************
+   * @param | {string}  | id                 | ID à affecter à la popup                      *
+   * @param | {string}  | title              | Titre à afficher en entête                    *
+   * @param | {Array}   | bgClassList        | Liste des classes CSS du fond                 *
+   * @param | {Array}   | containerClassList | Liste des classes CSS de la modale            *
+   * @param | {Array}   | classList          | Liste des classes CSS du contenu              *
+   * @param | {boolean} | showCloseBtn       | Permet de ne pas mettre de bouton X           *
+   * @param | {string}  | urlHtmlContent     | URL du template HTML                          *
+   * @param | {Function}| onAfterContentLoad | Hook exécuté après injection du template HTML *
+   *******************************************************************************************
+   * @return              {DOMElement}               La DIV de contenu                       *
+   *******************************************************************************************/
+  constructor(id, title, bgClassList, containerClassList, classList, showCloseBtn, urlHtmlContent, onAfterContentLoad) {
     
     // On commence par générer le fond inactivant la fenêtre (onClick = close)
     super();
@@ -55,6 +78,13 @@ class RS_Dialog extends HTMLDivElement {
     for (let classe of classList)
       content.classList.add(classe);
     popup.appendChild(content);
+
+    // Si un template est paramétré, on l'utilise comme contenu HTML
+    if (urlHtmlContent) {
+      if (onAfterContentLoad)
+        routage(urlHtmlContent, onAfterContentLoad, content);
+      else routage(urlHtmlContent, null, content);
+    }
 
     // Intégration de la boîte de dialogue au corps de document
     this.appendChild(popup);
@@ -190,7 +220,7 @@ function RS_Confirm(question, titre, lbl_yes, lbl_no, fn_yes, fn_no) {
   div_msg.style.height = "calc(100% - 60px)";
   div_msg.style.display = "flex";
   div_msg.style.flexDirection = "column";
-  div_msg.style.justifyContent = "space-around";
+  div_msg.style.justifyContent = "space-evenly";
   div_msg.innerHTML = question;
   popup.appendToContent(div_msg);
 
