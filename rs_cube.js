@@ -1,8 +1,23 @@
-/**
- * Inédit : ce composant permet d'afficher un message sur plusieurs faces d'un cube animés
- * Le contenu des face est à ajouter sous forme de balses dans le contenu de la balise principale <rs-cube>
- * La séquence est définissable via un attribut de la balise
- */
+/*
+  Copyright © 10/02/2020, Roquefort Softwares Web Components Library
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this Library and associated 
+  documentation files (the “Software”), to deal in the Software without restriction, including without limitation 
+  the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+  and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+  The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to 
+  the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the 
+  authors or copyright holders Roquefort Softwares be liable for any claim, damages or other liability, whether in 
+  an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or 
+  other dealings in the Software.
+  
+  Except as contained in this notice, the name of the Roquefort Softwares Web Components Library shall not be used 
+  in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written 
+  authorization from Roquefort Softwares.
+*/
 
 /**
  * Il serait intéressant de gérer les dimensions des contenus affichés :
@@ -151,8 +166,8 @@ class RSWCLCube extends HTMLBaseElement {
 
     // Génération du shadow DOM
     let shadow = this.attachShadow({ mode: SHADOW_MODE });
-    RS_WCL.styleShadow(shadow, 'css/rs_cube.css');
-    RS_WCL.styleShadow(shadow, 'css/theme.css');
+    RS_WCL.styleShadow(shadow, 'rswcl_samples/rs_cube.css');
+    RS_WCL.styleShadow(shadow, 'rswcl_samples/theme.css');
     shadow.appendChild(new RS_Cube(contents, tempo, sequence));
   }
 }

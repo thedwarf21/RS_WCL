@@ -1,4 +1,23 @@
-/* Inédit (en tout cas, je n'ai jamais vu ça nulle part) */
+/*
+  Copyright © 10/02/2020, Roquefort Softwares Web Components Library
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this Library and associated 
+  documentation files (the “Software”), to deal in the Software without restriction, including without limitation 
+  the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, 
+  and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+  The Software is provided “as is”, without warranty of any kind, express or implied, including but not limited to 
+  the warranties of merchantability, fitness for a particular purpose and noninfringement. In no event shall the 
+  authors or copyright holders Roquefort Softwares be liable for any claim, damages or other liability, whether in 
+  an action of contract, tort or otherwise, arising from, out of or in connection with the software or the use or 
+  other dealings in the Software.
+  
+  Except as contained in this notice, the name of the Roquefort Softwares Web Components Library shall not be used 
+  in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written 
+  authorization from Roquefort Softwares.
+*/
 
 // Constante spécifique à ce composant
 const CURSOR_WIDTH = 30;
@@ -61,11 +80,17 @@ class RS_CursorInput extends HTMLDivElement {
     if (readonly)
       this.inputElement.setAttribute("readonly", "true");
 
+    // Création du span contenant le texte de l'unité de mesure
+    let spanUnite = document.createElement("SPAN");
+    spanUnite.classList.add("rs-txt-unit");
+    spanUnite.innerHTML = txtUnite;
+
     // Initialisation des propriétés
     this.cursorMousePosX = 0;
     this.step = step;
     this.vmin = parseFloat(minParams.value);
     this.vmax = parseFloat(maxParams.value);
+    this.oldValue = value;
     this.readonly = readonly;
 
     // Si le rs_model est renseigné, on initialise la valeur avec celle pointée par rs_model
@@ -79,17 +104,10 @@ class RS_CursorInput extends HTMLDivElement {
     this.cursorElement = this.getInkBarWithCursor(value, minParams.color, midColor, maxParams.color, rs_model, onchange);
     this.appendChild(this.inputElement);
     this.inputElement.value = value;      // Si on le fait avant, la valeur ne s'affiche pas
-    this.appendChild(document.createTextNode(txtUnite));
-    
-    // Si un "rs_model" est spécifié, on met en place le binding
-    if (rs_model) {
-      RS_Binding.bindModel(rs_model, this.inputElement, "value", "change", null, ()=> { 
-        this.setCursorPosition();
-      }); 
-    }
+    this.appendChild(spanUnite);
 
     // On ajoute le listener onchange APRES le binding, afin qu'il s'exécute quand la valeur est à jour
-    this.inputElement.addEventListener("change", ()=> { this.applyValue(rs_model, onchange); });
+    this.inputElement.addEventListener("change", ()=> { this.applyValue(rs_model, onchange) });
   }
 
   /***************************************************************************************************
@@ -164,12 +182,21 @@ class RS_CursorInput extends HTMLDivElement {
    * @param | {function} | onchange | À exécuter si définie                             *
    **************************************************************************************/
   applyValue(rs_model, onchange) {
-    if (rs_model) {
-      let [target, property] = RS_Binding.getObjectAndPropertyNameFromModel(rs_model);
-      target[property] = parseFloat(this.inputElement.value);
-    }
-    if (onchange)
-      onchange(this.inputElement.value);
+    let newValue = parseFloat(this.inputElement.value);
+
+    // On effectue un contrôle: la valeur doit être dans le pas défini => si pas=2 et valeur=3 => X
+    if (newValue % this.step == 0) {
+      if (rs_model) {
+        let [target, property] = RS_Binding.getObjectAndPropertyNameFromModel(rs_model);
+        target[property] = newValue;
+      }
+      
+      if (onchange)
+        onchange(newValue);
+
+      this.setCursorPosition();
+      this.oldValue = newValue;
+    } else this.inputElement.value = this.oldValue;
   }
 
   /******************************************************************************
@@ -244,7 +271,6 @@ class RS_CursorInput extends HTMLDivElement {
     window.onmousemove = null;
     window.onmouseup = null;
     document.getElementsByTagName("BODY")[0].style.cursor = "default";
-    this.setCursorPosition();
   }
 }
 customElements.define('rs-wcl-cursor-input', RS_CursorInput, { extends: 'div' });
@@ -274,15 +300,15 @@ class RSWCLCursorInput extends HTMLElement {
       color: this.getAttribute("max-color")
     };
     let midColor = this.getAttribute("mid-color");
-    let step = parseFloat(this.getAttribute("step")) || 0.01;
+    let step = parseFloat(this.getAttribute("step")) || 0.01;
     let rs_model = this.getAttribute("rs-model");
     let txtUnite = this.getAttribute("txt-unit") || "";
     let readonly = eval(this.getAttribute("rs-readonly")) || false;
     let onchange = (value)=> {
       eval(this.getAttribute("onchange"));
     };
-    RS_WCL.styleShadow(shadow, 'css/rs_cursor_input.css');
-    RS_WCL.styleShadow(shadow, 'css/theme.css');
+    RS_WCL.styleShadow(shadow, 'rswcl_samples/rs_cursor_input.css');
+    RS_WCL.styleShadow(shadow, 'rswcl_samples/theme.css');
     shadow.appendChild(new RS_CursorInput(id, title, value, step, minParams, maxParams, midColor, rs_model, onchange, readonly, txtUnite));
   }
 }
