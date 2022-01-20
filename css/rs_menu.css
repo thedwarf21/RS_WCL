@@ -1,0 +1,105 @@
+/*****************
+ * Menu lattéral *
+ *****************/
+div.rs-side-menu { width: 100%; }
+
+div.rs-menu-title {
+  height: 4vw;
+  font-size: 2.5vw;
+  font-weight: bold;
+}
+
+/* Style pour chaque élément de menu */
+div.rs-menu-item { padding-left: 1vw; }
+div.rs-menu-item-display {
+  display: flex;
+  flex-direction: row;
+  height: 2vw;
+}
+div.rs-menu-item-display > .node-image {
+  height: 1vw;
+  width: 1vw;
+  margin-left: -1.5vw; /* Compensation de l'espace occupé par l'image pour ne pas perturber l'indentation */
+  margin-right: 0.5vw;
+  margin-top: 0.5vw;
+  /*background: url('../img/chevron.png');*/
+  background-size: contain;
+  transform: rotate(90deg);
+}
+div.rs-menu-item-display > .caption {
+  position: relative;
+  width: 10px;
+  white-space: nowrap;
+  font-size: 1.6vw;
+  cursor: pointer;
+}
+
+/* indicateur visuel de sélection */
+div.rs-menu-ink {
+  position: absolute;
+  transform: translateY(-0.4vw);
+  height: 0.3vw;
+  background-color: #8bd5ff;
+  border-radius: 0.15vw;
+
+  transition-property: top, left, width;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+/********************
+ * Menu de bannière *
+ ********************/
+rs-banner-menu { width: calc(100% - 211px); }
+
+div.rs-banner-menu {
+  height: 4vw;
+  width: 100%;
+  background: linear-gradient(to bottom, #d9d9d9, #fffefe);
+  box-shadow: 0 5px 5px rgba(0,0,0,0.4);
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+div.rs-banner-menu > div.rs-menu-item {
+  height: 100%;
+  width: auto;
+  font-size: 1.9vw;
+  font-weight: bold;
+  color: #006b95;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+div.rs-banner-menu > div.rs-menu-item > div > img.arrow {
+  height: 1vw;
+  transform: rotate(180deg);
+}
+
+div.rs-banner-menu > div.rs-menu-item > div > div.rs-submenu { display: none; }
+div.rs-banner-menu > div.rs-menu-item:hover > div > div.rs-submenu {
+  display: block;
+  background-color: white;
+  position: absolute;
+  width: auto;
+  height: auto;
+  top: 30vw;
+  padding-top: 0.3vw;
+  box-shadow: 1px 1px 2px #666;
+  z-index: 1;
+}
+
+div.rs-banner-menu > div.rs-menu-item > div > div.rs-submenu > div.rs-menu-item {
+  font-size: 1.2vw;
+  height: 1.9vw;
+  width: auto;
+  padding-right: 1vw;
+}
+div.rs-banner-menu > div.rs-menu-item > div > div.rs-submenu > div.rs-menu-item:hover {
+  background-color: #edf4f7;
+}

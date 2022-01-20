@@ -1,0 +1,158 @@
+/****************************************************************************************
+ * Feuille de style utilisée par la RS_WCL (Roquefort Softwares Web Components Library) *
+ ****************************************************************************************/
+
+/***** Champ de type FILE attendant une image *****/
+
+img.rs-file-image { 
+  width: 100%;
+  min-height: 200px;
+  margin: 5px;
+  border: 5px dotted #666;
+  background-color: silver;
+}
+
+input[type="file"].rs-file-image { 
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+/***** Champs de type TEXTAREA *****/
+
+textarea.rs-noresize { resize: none; }
+
+textarea {
+  width: calc(100% - 6px);
+  min-height: 340px;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+textarea:focus { box-shadow: 0px 0px 2px 2px #5555FF; }
+
+/***** Boutons d'action *****/
+
+input.rs-btn-action {
+  min-height: 30px;
+  border-radius: 5px;
+  box-shadow: 1px 1px 2px black;
+  background-color: #CCC;
+}
+input.rs-btn-action:hover {
+  background-color: #DDD;
+}
+.rs-btn-create {
+  color: #034996;
+  border: 3px solid #034996;
+}
+.rs-btn-suppr {
+  color: #E61E1E;
+  border: 3px solid #E61E1E;
+}
+
+/******* INPUT de type texte et labels associés *******/
+
+input[type="text"].rs-input { 
+  max-height: 25px;
+  min-height: 25px;
+  border: 1px solid darkblue;
+  border-radius: 5px;
+}
+
+input[type="text"].rs-input:focus { box-shadow: 0px 0px 2px 2px #5555FF; }
+
+div.rs-label {
+  margin-left: 5px;
+  margin-top: 5px;
+  font-family: Arial;
+  font-weight: bold;
+  color: #034993;
+  font-size: 1.3vw;
+
+  transition-property: transform -webkit-transform -ms-transform font-size;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  -ms-transition-property: transform -webkit-transform -ms-transform font-size;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-timing-function: ease-in-out;
+  -webkit-transition-property: transform -webkit-transform -ms-transform font-size;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+div.rs-label-inside {
+  transform: translate(0px, 25px);
+  -ms-transform: translate(0px, 25px);
+  -webkit-transform: translate(0px, 25px);
+}
+
+div.rs-label-outside { font-size: 2vw; }
+
+/***** Switches avec libellés *****/
+
+.rs-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.rs-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rs-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  -ms-transition: .4s;
+  transition: .4s;
+}
+
+.rs-slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  -ms-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .rs-slider { background-color: #2196F3; }
+
+input:focus + .rs-slider { box-shadow: 0 0 1px #2196F3; }
+
+input:checked + .rs-slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.rs-slider.rs-round {  border-radius: 34px; }
+.rs-slider.rs-round:before { border-radius: 50%; }
+
+.rs-switch-container {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.rs-switch-container .rs-caption {
+  font-family: Arial;
+  font-size: 1.8vw;
+  color: #034993;
+}

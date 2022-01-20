@@ -1,0 +1,158 @@
+/**
+ * Propriété de Roquefort Softwares
+ * 
+ * Feuille de style CSS à utiliser avec le composant toast.js ainsi que la fenêtre modale de la RS_WCL
+ *
+ * - Nécessite la présence d'une DIV ayant pour ID "toast", sur la page
+ * - Prière d'utiliser les fonction fournies dans main.js pour manipuler les classes
+ */
+
+/***** Toasts *****/
+
+/*** Le toast en tant que tel ***/
+div#rs-toast {
+  position: absolute;
+  width: calc(100% - 3px);
+  padding-top: 10px;
+  min-height: 40px;
+  bottom: -50px;
+  z-index: 25;
+  font-size: 1.9vw;
+  border-radius: 15px 15px 0px 0px;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+
+  transition-property: transform -webkit-transform -ms-transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  -ms-transition-property: transform -webkit-transform -ms-transform;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-timing-function: ease-in-out;
+  -webkit-transition-property: transform -webkit-transform -ms-transform;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+/*** Classe à appliquer pour afficher le toast ***/
+.rs-shown {
+  transform: translate(0px, -50px);
+  -ms-transform: translate(0px, -50px);
+  -webkit-transform: translate(0px, -50px);
+
+  transition-property: transform -webkit-transform -ms-transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  -ms-transition-property: transform -webkit-transform -ms-transform;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-timing-function: ease-in-out;
+  -webkit-transition-property: transform -webkit-transform -ms-transform;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+}
+
+/*** Niveaux d'alerte pour les messages (styles pré-établis) ***/
+.rs-info {
+  border: 1px solid darkgreen;
+  background-color: #55FF55;
+  color: darkgreen;
+}
+.rs-warn {
+  border: 1px solid orange;
+  background-color: #FFFF99;
+  color: orange;
+}
+.rs-err {
+  border: 1px solid red;
+  background-color: #FFCC99;
+  color: red;
+}
+
+/***** Boîtes de dialogue *****/
+
+/*** La div de fond (rend la boîte de dialogue modale en inactivant le reste de la fenêtre) ***/
+.rs-modal-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+/*** Fenêtre modale ***/
+.rs-modal {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  top: 10%;
+  left: 10%;
+
+  transition-property: width height;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  -ms-transition-property: width height;
+  -ms-transition-duration: 0.5s;
+  -ms-transition-timing-function: ease-in-out;
+  -webkit-transition-property: width height;
+  -webkit-transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-in-out;
+
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.rs-closed {
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+}
+
+/*** Titre de la fenêtre ***/
+.rs-modal-title {
+  font-family: Arial;
+  font-size: 1.7vw;
+  text-align: center;
+  width: 100%;
+  min-height: 34px;
+
+  background-color: steelblue;
+  color: white;
+  border-bottom: 1px solid black;
+  border-radius: 5px 5px 0 0;
+}
+
+/*** Bouton de fermeture de la boîte de dialogue ***/
+.rs-close-btn {
+  position: fixed;
+  top: calc(10% + 3px);
+  right: calc(10% + 3px);
+  cursor: pointer;
+
+  background-color: red;
+  color: white;
+  font-family: Arial Black;
+  font-size: 18px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+.rs-close-btn:hover { opacity: 0.6; }
+
+/*** Contenu de la boîte de dialogue ***/
+.rs-modal-content {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 35px);
+  overflow-y: auto;
+
+  background-color: white;
+  color: black;
+  border-radius: 0 0 5px 5px;
+}

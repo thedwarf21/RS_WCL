@@ -1,0 +1,35 @@
+/*********************************
+ * Feuille de style des tooltips *
+ *********************************/
+.rs-tooltip-wrapper {}
+
+/* La fenêtre affichant le message */
+.rs-tooltip-window {
+  position: fixed;
+  min-height: 2.5vw;
+  min-width: 2.5vw;
+  background-color: #003;
+  color: white;
+  border: none;
+  border-radius: 0.3vw;
+  padding: 0.5vw;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+/* Flèche et orientation -> inversé car on se réfère à la position de la fenêtre, donc on montre la direction opposée */
+.rs-arrow { 
+  position: fixed;
+  width: 1.8vw;
+  height: 1.8vw;
+  background-color: #040;
+  z-index: 0;
+}
+.rs-arrow.s { transform: rotate(45deg); }
+.rs-arrow.sw { transform: translate(-1.8vw, 0.5vw) scale(1.6) rotate(70deg); }
+.rs-arrow.w {  transform: rotate(45deg); }
+.rs-arrow.nw { transform: translate(-1.8vw, -0.5vw) scale(1.6) rotate(20deg); }
+.rs-arrow.n { transform: rotate(45deg); }
+.rs-arrow.ne { transform: translate(1.8vw, -0.5vw) scale(1.6) rotate(70deg); }
+.rs-arrow.e { transform: rotate(45deg); }
+.rs-arrow.se { transform: translate(1.8vw, 0.5vw) scale(1.6) rotate(20deg); }

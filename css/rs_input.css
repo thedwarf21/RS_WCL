@@ -1,0 +1,54 @@
+/******* INPUT de type texte et labels associés *******/
+
+/* Champ de saisie en lui-même (marge inférieure pour le dernier élément) */
+input[type="text"].rs-input-field,
+input[type="password"].rs-input-field { 
+  border: 0.1vw solid darkblue;
+  border-radius: 0.5vw;
+  max-height: 2.5vw;
+  min-height: 2.5vw;
+  font-size: 1.4vw;
+}
+input[type="text"].rs-input-field:focus { box-shadow: 0px 0px 2px 1px white; }
+input[type="text"].rs-input-field.readonly { background: silver; }
+.rs-input-cont { line-height: 2.5vw; }
+.rs-input-cont:last-child { margin-bottom: 1vw; }
+
+/* Label associé (on gère les animations transitionnelles sur les propriétés de transformation) */
+div.rs-label {
+  font-weight: bold;
+  font-size: 1.5vw;
+  margin-left: 0.5vw;
+  color: #034993;
+  
+  transition-property: transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+/* Classe décalant le label à l'intérieur du champ */
+div.rs-label-inside { transform: translateY(2.85vw); }
+
+/* Classes nécessaires au composant <rs-select> */
+div.rs-select-float {
+  position: absolute;
+  min-height: 2vw;
+  max-height: 14vw;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px;
+}
+
+div.rs-select-item {
+  height: 2vw;
+  padding-left: 0.5vw;
+  padding-right: 1vw;
+  white-space: nowrap;
+  cursor: pointer;
+}
+div.rs-select-item:hover { 
+  background: steelblue;
+  color: white; 
+}

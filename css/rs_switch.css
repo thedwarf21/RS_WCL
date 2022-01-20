@@ -1,0 +1,56 @@
+/***** Switches avec libellés *****/
+.rs-switch {
+  position: relative;
+  display: inline-block;
+  width: 6vw;
+  height: 3.4vw;
+}
+
+.rs-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rs-slider {
+  background-color: #ccc;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: background-color .4s;
+}
+
+.rs-slider:before {
+  background-color: white;
+
+  position: absolute;
+  content: "";
+  height: 2.6vw;
+  width: 2.6vw;
+  left: 0.4vw;
+  bottom: 0.4vw;
+  transition: transform .4s;
+}
+
+input:checked + .rs-slider { background-color: #2196F3; }
+input:focus + .rs-slider { box-shadow: 0 0 1px #2196F3; }
+input:checked + .rs-slider:before { transform: translateX(2.6vw); }
+
+.rs-slider.rs-round { border-radius: 3.4vw; }
+.rs-slider.rs-round:before { border-radius: 50%; }
+
+.rs-switch-container {
+  margin-top: 1vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rs-switch-container .rs-caption {
+  font-size: 1.8vw;
+  color: #034993;
+  margin-left: 1vw;
+}

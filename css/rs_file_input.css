@@ -1,0 +1,16 @@
+/***** Champ de type FILE attendant une image *****/
+img.rs-file-image { 
+  border: 0.5vw dotted #666;
+  background-color: silver;
+  cursor: pointer;
+  
+  width: 20vw;
+  min-height: 5vw;
+  margin: 0.5vw;
+}
+
+input[type="file"].rs-file-image { 
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
