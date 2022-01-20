@@ -1,0 +1,38 @@
+<h1>Introduction</h1>
+
+<p>Avant toute chose, sachez que ce qui est défini ici comme "bonnes pratiques", fait référence à la manière dont le concepteur de cette librairie l'utilise. Il ne s'agit donc pas d'une vérité absolue mais uniquement de recommandations. Rien ne vous empêche de l'utiliser autrement.</p>
+
+<h1>De la bonne utilisation des controllers</h1>
+
+<p>En définitive, c'est la notion la plus importante à acquérir pour que vos projets utilisant la RS WCL restent durablement maintenables.</p> 
+
+<p>En effet, il serait tout à fait possible de ne créer qu'un seul controller pour une application complète, par exemple. Mais auquel cas, dès lors que le projet prendrait de l'ampleur, retrouver une fonction en particulier, au sein de ce controller, risquerait de devenir laborieux.</p>
+
+<p>C'est pourquoi il est fortement recommandé de créer un controller principal gérant les aspects généraux (authentification, création de menu, etc.) ainsi qu'un controller par vue. De cette manière, vos controller demeureront légers et il vous sera plus facile de vous y retrouver.</p>
+
+<p>Afin de profiter au mieux des fonctionnalités de binding des composants de la librairie, il est recommandé d'initialiser <b>document.currentController</b> et de le maintenir à jour, de manière à ce qu'il référence à tout moment le controller actif.</p>
+
+<p>Pour ce faire, commencez par initialiser la valeur lors du chargement initial :</p>
+
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+document.currentController = new MainController();
+</textarea>
+
+<p>Pensez ensuite à la mettre à jour lorsque vous chargez une nouvelle vue :</p>
+
+<textarea class="code" style="height: calc(3.6em + 20px)" readonly>
+routage(url_template_html, element_cible, function() {
+	document.currentController = new ControllerLieAuTemplate();
+});
+</textarea>
+
+<p>Veillez toutefois à conserver une référence à votre ancien controller, avant de mettre à jour <b>document.currentController</b>, si celui-ci contient des informations ou des fonctions suceptibles de vous être utiles. Ce sera notamment le cas de votre controller principal, la plupart du temps (surtout si celui-ci gère un menu ou une session utilisateur).</p>
+
+<p>Pour ce faire, au moment d'initialiser <b>document.currentController</b>, créez une référence spécifique. Par exemple, pour le controller principal :</p>
+
+<textarea class="code" style="height: calc(2.4em + 20px)" readonly>
+document.mainController = new MainController();
+document.currentController = document.mainController;
+</textarea>
+
+<p><b>Si vous aviez le moindre doute ou la moindre question, n'hésitez surtout pas à <a href="mailto:francois@roquefort-softwares.com">me contacter par mail</a> afin que je mette à jour cette documentation.</b></p>
