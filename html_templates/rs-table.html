@@ -1,0 +1,258 @@
+<h1>Description</h1>
+
+<p>Ce composant est dédié à la génération dynamique de liste CRUD. Il est extrêmement puissant et gère aussi bien les champs de saisie classique que les listes déroulantes. Il est également en mesure de gérer à la colonne près, la visibilité, les droits en écriture et la largeur d'affichage, en s'appuyant sur une liste d'objets de paramétrage des entêtes.</p>
+
+<p>Je vous le recommande chaudement pour développer très rapidement et sans effort, les back-offices de vos applications.</p>
+
+<p>Ce site étant 100% statique, afficher une démo n'aurait absolument aucun sens, ce composant n'ayant de réelle utilité que dans un contexte applicatif utilisant des API REST de lecture / écriture / suppression des enregistrements. Veuillez cependant trouver ci-dessous, une classe type permettant d'utiliser efficacement le composant, ainsi que le template HTML générique (utilisable quelle que soit la structure et le paramétrage du votre tableau).</p>
+
+<h1>Snippets</h1>
+<div class="tab-title">Template HTML générique</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+<rs-table rs-model="scope.listeParams"></rs-table>
+</textarea>
+
+<p>L'objet de paramétrage attend les propriétés suivantes :</p>
+<ul>
+	<li>La liste d'objets <b>headers</b>, permet un paramétrage de l'affichage du tableau.<br/>
+		Chaque objet de la liste correspond à une colonne et contient les propriétés suivantes :
+		<ul>
+			<li><b>key</b> : nom de la propriété correspondante dans les tuples (propriété <b>data</b> de l'objet de paramétrage)</li>
+   			<li><b>lib</b> : libellé de la colonne, à afficher en entête</li>
+   			<li><b>width</b> : largeur à appliquer littérallement au style de la colonne (ex: <code>calc(100% - 12px)</code>)</li>
+   			<li><b>visible</b> : booléen permettant de cacher certaines rubriques du tuple (<b>id</b>, par exemple)</li>
+			<li><b>readonly</b> : booléen permettant de déterminer quels champs sont en lecture seule (ex: champs calculés)</li>
+		</ul><br/>
+		Propriétés optionnelles :
+		<ul>
+			<li><b>select</b> objet de configuration du champ --> la colonne contiendra un <b>rs-select</b>
+				<ul>
+					<li><b>get_liste</b> : Chemin d'accès à la liste des éléments (string)</li>
+					<li><b>key_field</b> : Nom de la propriété portant la valeur, dans les éléments</li>
+					<li><b>lib_field</b> : Nom de la propriété portant le texte, dans les éléments</li>
+				</ul>
+			</li>
+			<li><b>type</b> : type de composant de saisie (si pas <b>input</b> classique ni <b>rs-select</b>) => Valeurs possibles :
+				<ul><li><b>bool</b> : Affichera une checkbox</li></ul>
+			</li>
+		</ul>
+	</li>
+	<li><b>data</b> contient la liste des tuples sous forme d'objets. Les propriétés de ces objets sont listées dans <b>headers</b> (propriété <b>key</b>).<br/>
+   		Chaque élément de <b>data</b> peut également contenir les propriété <b>onchange</b> et <b>ondelete</b>, référençant respectivement les fonctions appelées lors de la modification et de la suppression d'un tuple.<br/><br/>
+   		Dans le cas où au moins un élément de <b>headers</b> contient la propriété <b>select</b>, l'objet <b>select_elts</b> doit également figurer dans les propriétés de <b>data</b> => les propriétés de <b>select_elts</b> doivent porter le même nom que la propriété de <b>data</b>, à laquelle se rapporte le <b>rs-select</b> : celle-ci est initialisée par <b>rs-table</b> avec l'élément HTML généré pour le champ.</li>
+   	<li><b>empty_record</b> est l'enregistrement vide à partir duquel sera généré le formulaire de création<br/>
+   		Cet enregistrement doit contenir la propriété <b>oncreate</b>, référençant la fonction de création d'un enregistrement, en plus des propriétés porteuses de données.</li>
+</ul>
+
+<div class="tab-title">Classe type (à adapter à la structure de vos enregistrements)</div>
+<textarea class="code" style="height: 30em; overflow-y: auto;" readonly>
+/**
+ * Classe charnière Controller / API pour les Produits
+ */
+class API_Produit {
+  
+  /*************************************************************
+   * Constructeur vide qui crée une instance vierge de données *
+   *************************************************************/
+  constructor() {
+    this.id = "";
+    this.type_prod = "";
+    this.designation = "";
+  }
+
+  /****************************************************************************
+   * Construit une instance et l'initialise avec les données de "obj"         *
+   ****************************************************************************
+   * @param  | {object} | obj | Objet porteur des propriétés d'initialisation *
+   ****************************************************************************
+   * @return   {API_Produit}      Un "API_Produit" initialisé                 *
+   ****************************************************************************/
+  static getInstance(obj) {
+
+    // Objet API_Produit avec ses propriétés porteuses de données initialisées
+    let retour = new API_Produit();
+    retour.id = obj.id;
+    retour.type_prod = obj.type_prod;
+    retour.designation = obj.designation;
+
+    // On utilise un <rs-select> pour "type_prod" => ajout de la propriété "select_elts"
+    retour.select_elts = {};
+
+    // Propriétés porteuses de fonctions d'appel à l'API
+    // S'il s'agit d'une enregistrement vierge (empty_record), on gère la création, sinon modif et suppr
+    if (obj.id) {
+
+      // => Modification de la valeur d'une cellule
+      retour.onchange = (key, val)=> { 
+        retour[key] = val;
+        retour.write((response)=> {
+          if (response.hasOwnProperty("error")) {  // Gestion des erreurs
+            console.error(response);
+            //RS_WCL.showToastMessage("Une erreur est survenue durant la mise à jour", MsgLevel.ERR, 1500);
+            RS_Alert("Une erreur est survenue durant la mise à jour", "Erreur critique", "Ok");
+          } else {
+            RS_WCL.showToastMessage("Modification enregistrée", MsgLevel.INFO, 1500);
+            document.main_controller.scope.produits = document.currentController.scope.objListe.data;
+          }
+        }); 
+      };
+
+      // => Suppresison d'une ligne
+      retour.ondelete = (obj_list, idx)=> {
+        retour.delete((response) => {
+          if (response) {                          // Gestion des erreurs
+            console.error(response);
+            //RS_WCL.showToastMessage("Une erreur est survenue durant la suppression", MsgLevel.ERR, 1500);
+            RS_Alert("Une erreur est survenue durant la suppression", "Erreur critique", "Ok");
+          } else {
+            RS_WCL.showToastMessage("Suppression effectuée", MsgLevel.INFO, 1500);
+            obj_list.splice(idx, 1);
+            document.mainController.scope.produits = document.currentController.scope.objListe.data;
+          }
+        });
+      };
+    } else {
+
+      // => Création d'une ligne
+      retour.oncreate = (obj_list, empty_record)=> {
+        retour.write((response)=> {
+          if (response.hasOwnProperty("error")) {  // Gestion des erreurs
+            console.error(response);
+            //RS_WCL.showToastMessage("Une erreur est survenue durant la création", MsgLevel.ERR, 1500);
+            RS_Alert("Une erreur est survenue durant la création", "Erreur critique", "Ok");
+          } else {
+            RS_WCL.showToastMessage("Création effectuée", MsgLevel.INFO, 1500);
+            empty_record.id = null;
+            empty_record.type_prod = null;
+            empty_record.designation = null;
+            empty_record.select_elts.type_prod.value = "";
+            obj_list.push(API_Produit.getInstance({ id: response.id, 
+                                                    type_prod: response.type_prod,
+                                                    designation: response.designation }));
+            document.mainController.scope.produits = document.currentController.scope.objListe.data;
+          }
+        });
+      };
+    }
+    return retour;
+  }
+
+  /***************************************************************************************
+   * Génère un objet utilisable par le composant "rs-table" (liste éditable)             *
+   ***************************************************************************************
+   * @param | {Function} | La fonction de rappel à laquelle on passe le résultat         *
+   ***************************************************************************************
+   * @return {object} L'objet avec ses entêtes, ses données et son enregistrement vierge *
+   ***************************************************************************************/
+  static getList(success) {
+    xhr("php/api/produit/list.php", "GET", "", (response)=> {
+      
+      // Encapsulation de chaque ligne du résultat dans une instance de "API_Statut"
+      let data = [];
+      for (let ligne of response)
+        data.push(API_Produit.getInstance(ligne));
+
+      // Création des entêtes de colonne
+      let headers = [{
+        key: "id",
+        visible: false
+      }, {
+        key: "type_prod",
+        lib: "Type",
+        width: "15%",
+        visible: true,
+        readonly: false,
+        select: {
+          get_liste: "document.mainController.scope.types_produit",
+          key_field: "flag",
+          lib_field: "nom"
+        }
+      }, {
+        key: "designation",
+        lib: "Désignation",
+        width: "75%",
+        visible: true,
+        readonly: false
+      }, { width: "10%" }];
+
+      // Réponse
+      if (success) {
+        success({
+          headers: headers,
+          data: data,
+          empty_record: API_Produit.getInstance({ id: null, type_prod: null, designation: null }),
+          idFieldName: "id"
+        });
+      } else return
+    });
+  }
+
+  /*************************************************************
+   * Retourne la liste des enregistrements pour un <rs-select> *
+   *************************************************************
+   * @return {array}       Liste des objets                    *
+   *************************************************************/
+  static getSelectList(callback) {
+    xhr("php/api/produit/list.php", "GET", "", (response)=> {
+      callback(response);
+    });
+  }
+
+  /*************************************************************************
+   * Appel à l'API d'écriture en base de données pour le tuple courant     *
+   *************************************************************************
+   * @param | {Function} | success | Fonction de rappel en cas de réussite *
+   *************************************************************************/
+  write(success) {
+
+    // Constitution de l'objet à envoyer à l'API
+    let jsonParams = {
+      id: this.id,
+      type_prod: this.type_prod,
+      designation: this.designation
+    };
+
+    // Envoi du record via l'API puis raffraîchissement de la liste si contrôle formulaire OK
+    if (this.ctrlForm()) {
+      xhr("php/api/produit/write.php", "POST", jsonParams, (response)=> {
+        success(response);
+      });
+    }
+  }
+
+  /*************************************************************************
+   * Appel à l'API de suppression pour le tuple courant                    *
+   *************************************************************************
+   * @param | {Function} | success | Fonction de rappel en cas de réussite *
+   *************************************************************************/
+  delete(success) {
+    RS_Confirm("Êtes vous sûr(e) de vouloir supprmier cet élément ?", 
+               `Suppression du produit "${this.designation}"`, "Oui", "Non", ()=> {
+      xhr("php/api/produit/delete.php", "GET", "id=" + this.id, (response)=> {
+        success(response);
+      });
+    });
+  }
+
+  /*****************************************************************************
+   * Contrôle d'intégrité des données saisies par l'utilisateur                *
+   *****************************************************************************
+   * @return   {boolean}   true si la saisie est correcte, false sinon         *
+   *****************************************************************************/
+  ctrlForm() {
+
+    // Génération de la liste des erreurs
+    let lstErr = [];
+    if (!this.type_prod)
+      lstErr.push("Veuillez sélectionner le type du produit");
+    if (!this.designation)
+      lstErr.push("Veuillez saisir la désignation du produit");
+
+    // Si erreurs, affichage des messages et 
+    if (lstErr.length !== 0) {
+      RS_WCL.displayErrors(lstErr);
+      return false;
+    } else return true;
+  }
+}
+</textarea>

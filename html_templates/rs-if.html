@@ -1,0 +1,40 @@
+<h1>Description</h1>
+
+<p>Ce composant permet de soumettre à condition la présence au sein du DOM de certains éléments de page. Les membres de l'expression doivent être séparés par des espaces. Ils sont identifiés par le script (valeurs brutes, opérateurs ou variables) afin de binder les variables, permettant au composant de supprimer/injecter le contenu au sein de son shadow DOM.</p>
+
+<h1>Démo</h1>
+<rs-if expression="scope.show_if_content == true">
+	<h3>Coucou !!!</h3>
+	<rs-cube rs-timer="1250" rs-sequence="['front', 'rear', 'top', 'left', 'right', 'bottom']">
+		<rs-content side="front">Les faces</rs-content>
+		<rs-content side="rear">du cube</rs-content>
+		<rs-content side="top">s'affichent</rs-content>
+		<rs-content side="left">dans l'ordre</rs-content>
+		<rs-content side="right">choisi</rs-content>
+		<rs-content side="bottom"><img src="rs_logo.png" style="width: 100%; margin-top: 16%" /></rs-content>
+	</rs-cube>
+</rs-if>
+
+<button onclick="document.currentController.scope.show_if_content = !document.currentController.scope.show_if_content">
+	Afficher / masquer
+</button>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(18em + 20px)" readonly>
+<rs-if expression="scope.show_if_content == true">
+	<h3>Coucou !!!</h3>
+	<rs-cube rs-timer="1250" rs-sequence="['front', 'rear', 'top', 'left', 'right', 'bottom']">
+		<rs-content side="front">Les faces</rs-content>
+		<rs-content side="rear">du cube</rs-content>
+		<rs-content side="top">s'affichent</rs-content>
+		<rs-content side="left">dans l'ordre</rs-content>
+		<rs-content side="right">choisi</rs-content>
+		<rs-content side="bottom"><img src="rs_logo.png" style="width: 100%; margin-top: 16%" /></rs-content>
+	</rs-cube>
+</rs-if>
+
+<button onclick="document.currentController.scope.show_if_content = !document.currentController.scope.show_if_content">
+	Afficher / masquer
+</button>
+</textarea>

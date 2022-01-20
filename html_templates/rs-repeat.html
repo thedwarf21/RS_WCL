@@ -1,0 +1,65 @@
+<h1>Description</h1>
+
+<p>Ce composant sert à générer du contenu HTML à partir des éléments d'une liste ou des propriété d'un objet, en s'appuyant sur le pattern HTML contenu par la balise.</p>
+
+<p>Le choix du type de parcours est défini par l'opérateur utilisé :</p>
+<ul>
+	<li><b>of</b> : parcourt des éléments d'une liste</li>
+	<li><b>in</b> : parcourt des propriétés d'un objet</li>
+</ul>
+
+<p>Le binding intégré au composant, permet une synchronisation en temps réel entre l'interface et la liste parcourrue.</p>
+
+<p>Il est possible d'ajouter un fichier CSS au shadow DOM du composant afin de gérer la mise en page au sein de la boucle de manière classique (et plus propre) via l'attribut <b>css</b> de la balise. Afin d'éviter des ralentissements dûs à un trop lourd volume de code CSS à charger (surtout dans le cas de boucles imbriqués susceptibles d'engendrer un grand nombre d'itérations), il est préférable de choisir un fichier CSS le plus léger et synthétique possible.</p>
+
+<h1>Démo</h1>
+<rs-repeat for="famille_article of scope.articles">
+	<h3>{{famille_article.nom}}</h3>
+	<rs-repeat for="article of famille_article.options">
+		<div><b>{{article.detail}}</b> : {{article.prix}} €</div>
+		<br />
+	</rs-repeat>
+</rs-repeat>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(8.4em + 20px)" readonly>
+<rs-repeat for="famille_article of scope.articles">
+	<h3>{{famille_article.nom}}</h3>
+	<rs-repeat for="article of famille_article.options">
+		<div><b>{{article.detail}}</b> : {{article.prix}} €</div>
+		<br />
+	</rs-repeat>
+</rs-repeat>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(30em + 20px)" readonly>
+my_controller.scope.articles = [{
+    nom: "Rame de 500 feuilles A4",
+    options: [{
+      detail: "80g/m²",
+      prix: 8.5
+    }, {
+      detail: "120g/m²",
+      prix: 15
+    }, {
+      detail: "160g/m²",
+      prix: 18.9
+    }]
+  }, {
+    nom: "Stylos jetables",
+    options: [{
+      detail: "Unité",
+      prix: 2.5
+    }, {
+      detail: "Paquet de 10",
+      prix: 12.5
+    }, {
+      detail: "Paquet de 100",
+      prix: 85
+    }]
+  }];
+</textarea>
+
+<p>Comme vous pouvez le constater, le composant gère correctement les imbrications. En effet, dans l'exemple présenté, la seconde boucle parcourt la liste <b>options</b> de l'élément courant <b>famille_article</b>.</p>

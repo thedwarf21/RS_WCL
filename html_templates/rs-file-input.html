@@ -1,0 +1,33 @@
+<h1>Description</h1>
+
+<p>Ce composant est un champ de saisie de type fichier sous la forme d'une vignette de visualisation. Il a été conçu pour les images uniquement. La valeur obtenue via ce composant est le code base64 de l'image sélectionnée.</p>
+
+<h1>Démo</h1>
+<rs-file-input rs-model="scope.image_base64" base64="" max-file-size="350000"></rs-file-input>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+<rs-file-input rs-model="scope.image_base64" base64="" max-file-size="350000"></rs-file-input>
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+html_file_input_container.appendChild( new RS_FileInput("", "", "scope.image_base64", null, null, 350000, []) );
+</textarea>
+
+<h1>Options de paramétrage</h1>
+<p>Ce composant propose diverses options de paramétrage via les attributs de la balise :</p>
+<ul>
+	<li><b>onimagechange</b> : expression évaluée lorsque l'utilisateur sélectionne une image.</li>
+	<li><b>ratio</b> : permet de forcer un ratio, ce qui peut être pratique si votre design en dépend.</li>
+	<li><b>max_size</b> : permet de limiter la taille des images sélectionnées. Un message d'erreur apparaît en cas de sélection d'une image trop volumineuse.</li>
+	<li><b>class</b> : permet d'affiner le rendu graphique.</li>
+</ul>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant en javascript pur est inutilement lourd et moins lisible.</p>

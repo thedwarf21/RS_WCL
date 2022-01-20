@@ -1,0 +1,58 @@
+<h1>Description</h1>
+
+<p>Ce composant permet de créer des boîtes de dialogue. Il est possible de l'utiliser au sein d'une interface (popup s'ouvrant au chargement de la vue, comme celle que vous venez de fermer) ou via l'appel aux fonctions <b>RS_Alert()</b> et <b>RS_Confirm()</b>.</p> 
+
+<h1>Démo</h1>
+<rs-dialog rs-title="Boîte de dialogue HTML">
+	<rs-dialog-content>
+		<p>La présente boîte de dialogue a été générée directement via le template HTML de la page.</p>
+		<p>C'est pourquoi elle s'ouvre automatiquement au chargement de la vue.</p>
+	</rs-dialog-content>
+</rs-dialog>
+
+<button onclick="RS_Alert('Voici le résultat obtenu.', 'Boîte de dialogue de type <i>alert()</i>', 'OK')">
+	Tester <i>RS_Alert()</i>
+</button>
+<button onclick="RS_Confirm('Comment allez-vous ?', 'Boîte de dialogue de type <i>confirm()</i>', 'Bien !', 'Bof...', function() { RS_Alert(`Heureux de l'apprendre`, 'Cool !!', 'OK'); }, function() { RS_Alert(`Désolé de l'apprendre`, 'Mince !!', 'OK'); })">
+	Tester <i>RS_Confirm()</i>
+</button>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(15.6em + 20px)" readonly>
+<rs-dialog rs-title="Boîte de dialogue HTML">
+	<rs-dialog-content>
+		<p>La présente boîte de dialogue a été générée directement via le template HTML de la page.</p>
+		<p>C'est pourquoi elle s'ouvre automatiquement au chargement de la vue.</p>
+	</rs-dialog-content>
+</rs-dialog>
+
+<button onclick="RS_Alert('Voici le résultat obtenu.', 'Boîte de dialogue de type <i>alert()</i>', 'OK')">
+	Tester <i>RS_Alert()</i>
+</button>
+<button onclick="RS_Confirm('Comment allez-vous ?', 'Boîte de dialogue de type <i>confirm()</i>', 'Bien !', 'Bof...', function() { RS_Alert(`Heureux de l'apprendre`, 'Cool !!', 'OK'); }, function() { RS_Alert(`Désolé de l'apprendre`, 'Mince !!', 'OK'); })">
+	Tester <i>RS_Confirm()</i>
+</button>
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(13.2em + 20px)" readonly>
+// Construction de la popup
+let popup = new RS_Dialog(id_popup, titre_popup, 
+                          bgCssClassList, popupCssClassList, contentCssClassList,
+                          has_close_button, 
+                          url_template_html, function() {
+	// Code exécuté après chargement du template, si "url_template_html" n'est pas vide
+	// => cette fonction fait donc office de mini-controller intégré
+});
+
+// Affichage de la popup
+document.body.appendChild(popup);
+</textarea>
+
+<p>Le constructeur de la classe <b>RS_Dialog</b> offre la possibilité de générer une boîte de dialogue à partir d'un template HTML. Le template HTML dont l'url est passée en paramètre sera utilisé pour générer le contenu de la boîte de dialogue ainsi invoquée.</p>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Les fonctions natives <b>alert()</b> et <b>confirm()</b> peuvent être désactivées par l'utilisateur. Outre l'habillage de vos boîtes de dialogue, les fonctions <b>RS_Alert()</b> et <b>RS_Confirm()</b> vous permettront de contourner cette difficulté.</p>

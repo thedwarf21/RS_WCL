@@ -1,0 +1,70 @@
+<h1>Description</h1>
+
+<p>Ce composant est une liste déroulante améliorée. En effet, en plus d'afficher une liste de choix possibles, il intègre également un champ de saisie permettant de filtrer ladite liste de choix.</p>
+
+<p>Si lors de la saisie du filtre, un seul résultat correspond, la valeur se sélectionne automatiquement. Si en revanche, aucun résultat ne correspond, un message s'affiche afin d'en aviser l'utilisateur.</p>
+
+<p>Lorsqu'une valeur est sélectionnée, l'entrée dans le champ fait apparaître la liste complète des choix possibles.</p>
+
+<h1>Démo</h1>
+<rs-select init="scope.select_items"
+           key="id"
+           lib="designation"
+           rs-model="scope.select_value"
+           onchange="RS_Alert(document.currentController.scope.select_value, 'ID sélection', 'OK');">
+</rs-select>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(7.4em + 20px)" readonly>
+<rs-select init="scope.select_items"
+           key="id"
+           lib="designation"
+           rs-model="scope.select_value"
+           onchange="RS_Alert(document.currentController.scope.select_value, 'ID sélection', 'OK');">
+</rs-select>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(13.2em + 20px)" readonly>
+my_controller.scope.select_items = [
+    { id: 1, designation: "Steak haché" }, 
+    { id: 2, designation: "Tournedos Rossini" },
+    { id: 3, designation: "Jambon de pays" },
+    { id: 4, designation: "Magret fumé" },
+    { id: 5, designation: "Jambon de poulet" },
+    { id: 6, designation: "Chips aux crevettes" },
+    { id: 7, designation: "Pommes de terre" },
+    { id: 8, designation: "Haricots verts" },
+    { id: 9, designation: "Carottes" }];
+my_controller.scope.select_value = undefined;
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(16.8em + 20px)" readonly>
+my_controller.scope.select_value = undefined;
+html_select_container.appendChild( new RS_Select([
+    { id: 1, designation: "Steak haché" }, 
+    { id: 2, designation: "Tournedos Rossini" },
+    { id: 3, designation: "Jambon de pays" },
+    { id: 4, designation: "Magret fumé" },
+    { id: 5, designation: "Jambon de poulet" },
+    { id: 6, designation: "Chips aux crevettes" },
+    { id: 7, designation: "Pommes de terre" },
+    { id: 8, designation: "Haricots verts" },
+    { id: 9, designation: "Carottes" }], 
+    "id", "designation", "scope.select_value", null, function() {
+    	RS_Alert(document.currentController.scope.select_value, 'ID sélection', 'OK');
+    }) );
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Dans cet exemple, la liste est initialisée de manière statique. Cependant, en situation réelle, rien ne vous empêche de l'initialiser avec un <b>recordset</b> obtenu par appel AjaX (c'est même tout l'intérêt de ce composant).</p>
+
+<p>L'attribut <b>key</b> permet au composant d'identifier la propriété utilisée comme <b>valeur</b> dans les objets de la liste, tandis que l'attribut <b>lib</b> permet d'identifier la propriété utilisée pour <b>l'affichage et le filtre</b>.</p>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant en javascript pur est inutilement lourd et moins lisible.</p>

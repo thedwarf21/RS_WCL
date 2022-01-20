@@ -1,0 +1,67 @@
+<h1>Description</h1>
+
+<p>Ce composant permet d'afficher un cube animé paramétrable, non seulement du point de vue du contenu des faces qui le composent, mais également du point de vue de l'ordre de présentation de ses faces et du temps d'affichage de chacune avant de passer à la suivante.</p>
+
+<h1>Démo</h1>
+<rs-cube rs-timer="1250" rs-sequence="['front', 'rear', 'top', 'left', 'right', 'bottom']">
+	<rs-content side="front">Les faces</rs-content>
+	<rs-content side="rear">du cube</rs-content>
+	<rs-content side="top">s'affichent</rs-content>
+	<rs-content side="left">dans l'ordre</rs-content>
+	<rs-content side="right">choisi</rs-content>
+	<rs-content side="bottom"><img src="rs_logo.png" style="width: 100%; margin-top: 16%" /></rs-content>
+</rs-cube>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(9.6em + 20px)" readonly>
+<rs-cube rs-timer="1250" rs-sequence="['front', 'rear', 'top', 'left', 'right', 'bottom']">
+	<rs-content side="front">Les faces</rs-content>
+	<rs-content side="rear">du cube</rs-content>
+	<rs-content side="top">s'affichent</rs-content>
+	<rs-content side="left">dans l'ordre</rs-content>
+	<rs-content side="right">choisi</rs-content>
+	<rs-content side="bottom"><img src="rs_logo.png" style="width: 100%; margin-top: 16%" /></rs-content>
+</rs-cube>
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title" id="tab_1">js</div>
+<textarea class="code" style="height: calc(12em + 20px)" readonly>
+let contents = {
+	front: "Les faces",
+	rear: "du cube",
+	top: "s'affichent",
+	left: "dans l'ordre",
+	right: "choisi",
+	bottom: '<img src="rs_logo.png" style="width: 100%; margin-top: 16%" />'
+};
+
+html_cube_container.appendChild( new RS_Cube(contents, 1250, ['front', 'rear', 'top', 'left', 'right', 'bottom']) );
+</textarea>
+
+<h1>Paramétrage du rendu graphique</h1>
+<p>Ce composant utilise des variables CSS dans le rendu de son affichage. Cette fonctionnalité a été intégrée à titre expérimental pour le moment, mais les autres commposants devraient en bénéficier prochainement.</p>
+
+<p>Pour paramétrer le rendu, il vous suffira de déclarer et d'initialiser à votre convenance, dans le CSS de votre page, les variables CSS correspondant à ce que vous souhaitez personnaliser :</p>
+<ul>
+	<li><b>--scene-bg</b> : fond appliqué à la scène d'animation 3D.</li>
+	<li><b>--cube-face-bg</b> : fond appliqué à chacune des faces du cube.</li>
+	<li><b>--cube-text-color</b> : couleur appliquée au texte sur les faces du cube.</li>
+</ul>
+
+<p>Par exemple :</p>
+<div class="tab-title">CSS</div>
+<textarea class="code" style="height: calc(6em + 20px)" readonly>
+:root {
+  --scene-bg: transparent;
+  --cube-face-bg: rgb(215, 215, 215);
+  --cube-text-color: #303F48;
+}
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant et son contenu en javascript pur est inutilement lourd et moins lisible.</p>

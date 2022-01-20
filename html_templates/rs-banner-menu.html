@@ -1,0 +1,70 @@
+<h1>Description</h1>
+
+<p>Ce composant est un menu de navigation horizontal hiérarchisé. Il est conçu pour synchroniser son contenu avec une propriété objet de votre controller, via l'attribut <b>rs-model</b>.</p>
+
+<h1>Démo</h1>
+<rs-banner-menu rs-model="scope.banner_menu"></rs-banner-menu>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+<rs-banner-menu rs-model="scope.banner_menu"></rs-banner-menu>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(25.2em + 20px)" readonly>
+/**
+ * Initialisation. 
+ * Toute modification du contenu de cette propriété, par appels à push(), splice(), shift() ou unshift() 
+ * mettra à jour l'affichage, même après affichage initial. 
+ */
+my_controller.scope.banner_menu = [{
+    lib: "Sans enfants",
+    onclick: ()=> { RS_Alert("Vous avez cliqué sur l'élément de menu intitulé 'Sans enfants'", "Clic sur menu 'Sans enfants'", "Fermer"); }
+  }, {
+    lib: "Avec enfants",
+    children: [{
+      lib: "Sous-menu 1",
+      onclick: ()=> { RS_Alert("Vous avez cliqué sur le sous-menu 1", "Clic sur sous-menu", "Fermer"); }
+    }, {
+      lib: "Sous-menu 2",
+      onclick: ()=> { RS_Alert("Vous avez cliqué sur le sous-menu 2", "Clic sur sous-menu", "Fermer"); }
+    }, {
+      lib: "Sous-menu 3",
+      onclick: ()=> { RS_Alert("Vous avez cliqué sur le sous-menu 3", "Clic sur sous-menu", "Fermer"); }
+    }]
+  }];
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title" id="tab_1">js</div>
+<textarea class="code" style="height: calc(26.4em + 20px)" readonly>
+// Du moment que la propriété existe, vous pouvez la référencer lors de l'appel au constructeur.
+my_controller.scope.banner_menu = [];
+html_menu_container.appendChild( new RS_BannerMenu("scope.banner_menu") );
+
+// Vous pouvez ensuite ajouter les éléments de menu ou en retirer à votre guise.
+this.scope.banner_menu.push({
+    lib: "Sans enfants",
+    onclick: ()=> { RS_Alert("Vous avez cliqué sur l'élément de menu intitulé 'Sans enfants'", "Clic sur menu 'Sans enfants'", "Fermer"); }
+  });
+this.scope.banner_menu.push({
+    lib: "Avec enfants",
+    children: [{
+      lib: "Sous-menu 1",
+      onclick: ()=> { RS_Alert("Vous avez cliqué sur le sous-menu 1", "Clic sur sous-menu", "Fermer"); }
+    }, {
+      lib: "Sous-menu 2",
+      onclick: ()=> { RS_Alert("Vous avez cliqué sur le sous-menu 2", "Clic sur sous-menu", "Fermer"); }
+    }, {
+      lib: "Sous-menu 3",
+      onclick: ()=> { RS_Alert("Vous avez cliqué sur le sous-menu 3", "Clic sur sous-menu", "Fermer"); }
+    }]
+  });
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>Il vous faudra sans doute modifier quelques peu le CSS afin de l'adapter à votre page. En effet, le conteneur HTML contenant les éléments de sous-menu est en positionnement absolu. Il vous faudra donc modifier la propriété <b>top</b> du sélecteur <b>div.rs-submenu</b> afin que le conteneur se place juste en-dessous du menu, comme sur la démo.</p>

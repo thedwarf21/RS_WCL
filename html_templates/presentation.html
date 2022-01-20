@@ -1,0 +1,50 @@
+<h1>But de cette librairie</h1>
+
+<p>La tendance actuelle dans le web, consiste à utiliser des frameworks afin d'accélérer le développement tout en uniformisant les méthodes de travail.</p>
+
+<p>Cependant, l'utilisation de frameworks a fini, à la longue, par amener deux effets de bords :</p>
+<ul>
+	<li><b>perte de performances</b> dû à l'ajout de couches supplémentaires souvent très lourdes</li>
+	<li><b>inovation difficile</b> dû aux limitations inhérentes au cadre imposé par un framework</li>
+</ul>
+
+<p>Le but de cette librairie est d'apporter les indispensables à l'application du design pattern <b>MVC</b> dans le développement frontend (dont le <b>live binding</b>), sans adjonction de ces effets de bord. En effet, sa légèreté et sa simplicité en font une librairie efficace et performante.</p>
+
+<p>Les standards ont suffisamment évolué et depuis suffisamment longtemps pour permettre aujourd'hui de développer facilement une librairie de composants, sans que cette pratique ne soit réellement chronophage. De plus, travailler de la sorte permet de maîtriser son code de bout en bout, et donc de le faire évoluer au gré de ses besoins, sans devoir attendre une hypothétique mise à jour du framework utilisé.</p>
+
+<p>Les standards <b>EcmaScript 6 (2015)</b> permettent la création de composants web from scratch. La RS WCL définit des fonctions permettant d'appliquer le <b>live binding</b> sur les composants web créés de la sorte, ainsi que des fonctions de routage, d'appel AjaX, etc.</p>
+
+<p>De cette manière, et sans avoir à utiliser de framework, mettre en place une interface en s'appuyant sur MVC devient parfaitement naturel :</p>
+<ul>
+	<li><b>Modèle</b> : Cet aspect étant principalement géré en backend, nul besoin de s'en préoccuper ici. On en retrouvera toutefois des traces au niveau des controllers. Par défaut, la RS WCL traduit les références à <b>scope</b> par <b>document.currentController.scope</b>. Aussi, est-il recommandé (mais pas indispensable), de créer un objet <b>scope</b> embarquant les données du modèle correspondant, dans chacune de vos classes controller, et de faire en sorte que <b>document.currentController</b> référence à tout moment le controller actif.</li>
+	<li><b>Vue</b> : Les composants web de cette librairie sont utilisables sous forme de balises HTML. Cette couche prend donc la forme de pages web ou de templates HTML.</li>
+	<li><b>Controller</b> : Le live binding intégré aux composant vous permettra de mettre à jour votre interface en ne modifiant que des objets javascript. En principe, vos controllers ne devraient pas avoir besoin d'accéder au DOM. Dans le cas contraire, il est préférable d'implémenter un nouveau composant.</li>
+</ul>
+
+<h1>Fichiers</h1>
+
+<p>Au sein du dépot GitHub (téléchargeable au format ZIP, via le menu), la librairie en elle-même est répartie dans les dossiers <b>js</b> et <b>css</b>, contenant respectivement les scripts et les feuilles de styles des différents composants.</p>
+
+<p>Il est recommandé de stocker les fichiers CSS dédiés aux différents composants dans un dossier à part, afin de les retrouver plus facilement.</p>
+
+<p><b>Important :</b></p>
+<p>Il vous faudra initialiser la constante <b>COMPONENTS_CSS_PATH</b> ('js/rs_wcl.js' -> ligne 10) pour que les composants puissent accéder à leurs feuilles de styles respectives.</p>
+
+<h1>La bibliothèque de fonctions</h1>
+
+<p>La bibliothèque de fonctions est stockée au sein de 2 fichiers distincts :</p>
+
+<ul>
+	<li><b>main.js</b> contient des fonctions utilitaires (routage, fonction d'appel AjaX, conversion de fichiers en base64 pour les images, par exemple)</li>
+	<li><b>RS_WCL.js</b> contient une classe contenant un ensemble de fonctions statiques, prévues pour être utilisées au sein des composants. On y trouve nottamment les fonctions liées au live binding ainsi que la fonction permettant d'accéder à un objet, une propriété d'objet, ou encore un élément de liste, à partir de l'expression littérale correspondante (indispensable au fonctionnement du live binding). En outre, ce script définit également la classe <b>HTMLBaseElement</b> héritant de <b>HTMLElement</b> et définissant un hook supplémentaire, appelé lorsque la balise <b>ainsi que son contenu</b> est chargée par le navigateur, ce qui peut s'avérer indispensable pour le développement de certains composants.</li>
+</ul>
+
+<h1>Les composants</h1>
+
+<p>Pour des raisons de maintenabilité (entre autres), le code des différents composants est stocké dans des fichiers séparés. Si le code CSS doit rester séparé afin d'éviter d'alourdir le shadow DOM des composants, le code javascript peut (et devrait, en production, afin de réduire le temps de chargement initial) être regroupé au sein d'un seul et même fichier (minifié, idéalement). Pour ce faire, il vous suffira de prendre en compte cet aspect dans votre script de déploiement. En effet, la boucle <b>for</b> des langages de script système étant conçue pour les parcours de fichiers, il est aisé d'automatiser ce processus.</p>
+
+<p>La plupart des composants de cette bibliothèque sont prévus pour pouvoir être utilisés aussi bien en tant que balises HTML qu'en tant que classe javascript héritant de <b>HTMLElement</b>. Pour rendre ceci possible, l'implémentation a été séparée en deux classes distinctes :</p>
+<ul>
+	<li>La classe prévue pour un usage purement javascript définit la structure HTML/CSS ainsi que le comportement du composant. Elle définit un constructeur prenant en charge tous les paramètres nécessaires à sa création. Certains de ces paramètres sont optionnels (précisé en commentaire de la classe). Le composant est donc créé via l'opérateur <b>new</b> et peut ensuite être injecté au sein du DOM. <b>Utiliser le composant de cette manière ne l'encapsule pas dans un shadow DOM. Par conséquent, son rendu peut s'en trouver perturbé par le CSS utilisé par le reste de la page, en cas de collision de sélecteurs. De plus, cela vous imposera d'inclure le CSS du composant à la page au sein de laquelle il sera injecté.</b></li>
+	<li>La classe prévue pour une utilisation en tant que balise HTML crée un shadow DOM au sein duquel sont encapsulés le CSS du composant ainsi que l'objet issu de l'appel au constructeur de la classe purement javascript. Les paramètres passés au constructeur sont obtenus à partir des attributs définis par la balise HTML. En termes d'implémentation, le plus souvent, cette classe est uniquement chargée du traitement des attributs de la balise (et de son contenu, si le composant est prévu pour le gérer), ainsi que de la création du shadow DOM.</li>
+</ul>

@@ -1,0 +1,76 @@
+<h1>Description</h1>
+
+<p>Ce composant est un panneau d'affichage présentant séquentiellement plusieurs contenus. Survoler la zone d'affichage avec la souris met le défilement en pause. Il est possible d'afficher un contenu précis en cliquant sur la pastille correspondante.</p>
+
+<h1>Démo</h1>
+<rs-carousel rs-height="20vw" rs-timer="1000">
+	<rs-carousel-contents>
+		<rs-content direction="column">
+			<h1>Contenu du premier panneau</h1>
+			<p>Affichage flex en colonne</p>
+		</rs-content>
+		<rs-content>
+			<center>Contenu du second panneau</center>
+			<p>Affichage par défaut</p>
+			<p>Si ce n'est pas précisé les éléments sont affichés en colonne</p>
+		</rs-content>
+		<rs-content direction="row">
+			<b>Mais aussi...</b>
+			Affichage possible en ligne
+		</rs-content>
+	</rs-carousel-contents>
+</rs-carousel>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(20.4em + 20px)" readonly>
+<rs-carousel rs-height="20vw" rs-timer="1000">
+	<rs-carousel-contents>
+		<rs-content direction="column">
+			<h1>Contenu du premier panneau</h1>
+			<p>Affichage flex en colonne</p>
+		</rs-content>
+		<rs-content>
+			<center>Contenu du second panneau</center>
+			<p>Affichage par défaut</p>
+			<p>Si ce n'est pas précisé les éléments sont affichés en colonne</p>
+		</rs-content>
+		<rs-content direction="row">
+			<b>Mais aussi...</b>
+			Affichage possible en ligne
+		</rs-content>
+	</rs-carousel-contents>
+</rs-carousel>
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title" id="tab_1">js</div>
+<textarea class="code" style="height: calc(25.2em + 20px)" readonly>
+let contents_list = [];
+
+let div_0 = document.createElement("DIV");
+div_0.classList.add("rs-content");
+div_0.innerHTML = "<h1>Contenu du premier panneau</h1><p>Affichage flex en colonne</p>";
+div_0.style.flexDirection = "column";
+contents_list.push(div_0);
+
+let div_1 = document.createElement("DIV");
+div_1.classList.add("rs-content");
+div_1.innerHTML = "<center>Contenu du second panneau</center><p>Affichage par défaut</p><p>Si ce n'est pas précisé les éléments sont affichés en colonne</p>";
+div_1.style.flexDirection = DEFAULT_DIRECTION;
+contents_list.push(div_1);
+
+let div_2 = document.createElement("DIV");
+div_2.classList.add("rs-content");
+div_2.innerHTML = "<b>Mais aussi...</b>Affichage possible en ligne";
+div_2.style.flexDirection = "row";
+contents_list.push(div_2);
+
+html_carousel_container.appendChild( new RS_Carousel("50vw", 1000, contents_list) );
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant et son contenu en javascript pur est inutilement lourd et moins lisible.</p>

@@ -1,0 +1,35 @@
+<h1>Description</h1>
+
+<p>Ce composant est une case à cocher déguisée en commutateur. Il permet d'afficher un commutateur carré ou arrondi, au choix.</p>
+
+<h1>Démo</h1>
+<rs-switch caption="Switch carré" rs-model="scope.sw_square" checked="true"></rs-switch>
+<rs-switch caption="Switch arrondi" rs-model="scope.sw_rounded" rounded="true"></rs-switch>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(2.4em + 20px)" readonly>
+<rs-switch caption="Switch carré" rs-model="scope.sw_square" checked="true"></rs-switch>
+<rs-switch caption="Switch arrondi" rs-model="scope.sw_rounded" rounded="true"></rs-switch>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(2.4em + 20px)" readonly>
+my_controller.scope.sw_square = true;
+my_controller.scope.sw_rounded = false;
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(4.8em + 20px)" readonly>
+my_controller.scope.sw_square = true;
+my_controller.scope.sw_rounded = false;
+html_switches_container.appendChild( new RS_Switch("", false, true, "Switch carré", "scope.sw_square") );
+html_switches_container.appendChild( new RS_Switch("", true, false, "Switch arrondi", "scope.sw_rounded") );
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant en javascript pur est inutilement lourd et moins lisible.</p>

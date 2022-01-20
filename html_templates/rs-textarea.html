@@ -1,0 +1,30 @@
+<h1>Description</h1>
+
+<p>Ce composant est un simple <b>textarea</b> utilisant le <b>binding</b>.</p>
+
+<h1>Démo</h1>
+<rs-textarea rs-model="scope.textarea_value" placeholder="Entrez votre texte ici" noresize="true" rs-readonly="false"></rs-textarea>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+<rs-textarea rs-model="scope.textarea_value" placeholder="Entrez votre texte ici" noresize="true" rs-readonly="false"></rs-textarea>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+my_controller.scope.textarea_value = "";
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(2.4em + 20px)" readonly>
+my_controller.scope.textarea_value = "";
+html_textarea_container.appendChild( new RS_Textarea("", "", "scope.textarea_value", "Entrez votre texte ici", true, false) );
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant en javascript pur est inutilement lourd et moins lisible.</p>

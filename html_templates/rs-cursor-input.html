@@ -1,0 +1,110 @@
+<h1>Description</h1>
+
+<p>Ce composant est un champ de saisie numérique présenté sous forme de curseur sur fond dégradé.</p>
+
+<h1>Démo</h1>
+<rs-cursor-input titre="Curseur modifiable"
+				 init-value="5"
+				 txt-unit="kg"
+				 step="1"
+				 min-value="0"
+				 max-value="10"
+				 min-color="#85C1FF"
+				 mid-color="#FFF83D"
+				 max-color="#FE9D46"
+				 rs-model="scope.cursor_value">
+</rs-cursor-input>
+
+<p>L'utilisateur peut choisir la valeur de deux manières différentes :</p>
+<ul>
+	<li>par drag & drop du bouton du curseur</li>
+	<li>en cliquant sur la valeur affichée à droite</li>
+</ul>
+
+<p>En effet, la valeur est affichée dans un champ de saisie modifiable.</p>
+
+<p>Le composant gérant la propriété <b>rs-model</b>, il est possible d'en synchroniser la valeur avec une propriété du <b>scope</b>. Ce qui signifie que toute modifiaction de la valeur de cette propriété mettra à jour l'interface et inversement.</p>
+
+<p>Le pas (écart entre deux valeurs valides) est paramétrable, de mêmes que les valeurs minimale et maximale. En cas de saisie d'une valeur hors pas, la dernière valeur valide connue est ré-appliquée, tandis qu'en cas de saisie d'une valeur hors seuils de tolérance (supérieure à la maximale ou inféreieure à la minimale), le curseur se met en <b>erreur</b> et le bouton de réglage apparaît en rouge.</p>
+
+<p>Le curseur présenté ci-dessus est paramétré pour recevoir des valeurs entières comprises entre 0 et 10, inclus.</p>
+
+<p>Il est également possible d'afficher un curseur en lecture seule, via l'attribut <b>rs-readonly</b>. Par exemple, ci-dessous, un curseur en lecture seule, initialisé à 2,5 et paramétré pour afficher des valeurs entre 0 et 3, au pas de 0,5.</p>
+
+
+<rs-cursor-input titre="Curseur lecture seule"
+				 txt-unit=""
+				 init-value="2.5"
+				 step="0.5"
+				 min-value="0"
+				 max-value="3"
+				 min-color="#DCDCDC"
+				 mid-color="#A0A0A0"
+				 max-color="#717171"
+				 rs-readonly="true">
+</rs-cursor-input>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(27.6em + 20px)" readonly>
+<rs-cursor-input titre="Curseur modifiable"
+				 init-value="5"
+				 txt-unit="kg"
+				 step="1"
+				 min-value="0"
+				 max-value="10"
+				 min-color="#85C1FF"
+				 mid-color="#FFF83D"
+				 max-color="#FE9D46"
+				 rs-model="scope.cursor_value">
+</rs-cursor-input>
+
+<rs-cursor-input titre="Curseur lecture seule"
+				 txt-unit=""
+				 init-value="2.5"
+				 step="0.5"
+				 min-value="0"
+				 max-value="3"
+				 min-color="#DCDCDC"
+				 mid-color="#A0A0A0"
+				 max-color="#717171"
+				 rs-readonly="true">
+</rs-cursor-input>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+my_controller.scope.cursor_value = 5;
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title" id="tab_1">js</div>
+<textarea class="code" style="height: calc(25.2em + 20px)" readonly>
+let min_params = {
+		value: 0, 
+		color: "#85C1FF"
+	}, 
+	max_params = {
+		value: 10,
+		color: "#FE9D46"
+	}, 
+	min_params_readonly = {
+		value: 0,
+		color: "#DCDCDC"
+	}, 
+	max_params_readonly = {
+		value: 3,
+		color: "#717171"
+	},
+	cursor = new RS_CursorInput(null, "Curseur modifiable", 5, 1, min_params, max_params, "#FFF83D", "scope.cursor_value", null, false, "kg"),
+	readonly_cursor = new RS_CursorInput(null, "Curseur lecture seule", 2.5, 0.5, min_params, max_params, "#A0A0A0", null, null, true, "");
+
+html_cursors_container.appendChild( cursor );
+html_cursors_container.appendChild( readonly_cursor );
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant en javascript pur est inutilement lourd et moins lisible.</p>

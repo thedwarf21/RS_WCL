@@ -1,0 +1,54 @@
+<h1>Description</h1>
+
+<p>Ce composant est un menu hiérarchisé prévu pour s'afficher sur un côté de l'interface (il s'étend verticalement).</p>
+
+<h1>Démo</h1>
+<p>Voir le menu à gauche de la présente page.</p>
+
+<h2>Utilisation par template HTML</h2>
+<div class="tab-title">HTML</div>
+<textarea class="code" style="height: calc(1.2em + 20px)" readonly>
+<rs-side-menu menu-title="Menu de navigation" rs-model="scope.menu_items"></rs-side-menu>
+</textarea>
+
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(15.6em + 20px)" readonly>
+my_controller.scope.menu_items = [{
+    lib: "item 1",
+    onclick: ()=> { // code exécuté lors du clic }
+  }, {
+    lib: "item 2",
+    children: [{
+      lib: "item 2-1",
+      onclick: ()=> { // code exécuté lors du clic }
+    }, {
+      lib: "item 2-2",
+      onclick: ()=> { // code exécuté lors du clic }
+    }]
+  }];
+</textarea>
+
+<h2>Utilisation en javascript pur</h2>
+<div class="tab-title">js</div>
+<textarea class="code" style="height: calc(16.8em + 20px)" readonly>
+my_controller.scope.menu_items = [{
+    lib: "item 1",
+    onclick: ()=> { // code exécuté lors du clic }
+  }, {
+    lib: "item 2",
+    children: [{
+      lib: "item 2-1",
+      onclick: ()=> { // code exécuté lors du clic }
+    }, {
+      lib: "item 2-2",
+      onclick: ()=> { // code exécuté lors du clic }
+    }]
+  }];
+html_side_menu_container.appendChild( new RS_SideMenu("scope.menu_items", "Menu de navigation") );
+</textarea>
+
+<h1>Conseils d'utilisation</h1>
+
+<p>Comme toujours lorsque cette possibilité est offerte, il est recommandé d'utiliser ce composant en tant que balise HTML.</p>
+
+<p>En effet, comme vous pouvez le constater, bien que ce soit techniquement faisable, créer le composant en javascript pur est inutilement lourd et moins lisible.</p>
