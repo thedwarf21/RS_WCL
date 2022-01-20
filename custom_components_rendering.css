@@ -1,0 +1,8 @@
+/*** Variables CSS pour personnalisation des composants ***/
+:root {
+
+	/* RS_Cube */
+  --scene-bg: transparent;
+  --cube-face-bg: rgb(215, 215, 215);
+  --cube-text-color: #303F48;
+}

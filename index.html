@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="" />
+    <meta charset="utf8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="rs_logo.png" />
+    <title>RS WCL - Documentation d'utilisation</title>
+    <meta name="description" content="Librairie de composants web" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="custom_components_rendering.css" />
+    
+    <!-- Scripts RS WCL -->
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/rs_wcl.js"></script>
+    <script type="text/javascript" src="js/rs_banner_menu.js"></script>
+    <script type="text/javascript" src="js/rs_carousel.js"></script>
+    <script type="text/javascript" src="js/rs_cube.js"></script>
+    <script type="text/javascript" src="js/rs_cursor_input.js"></script>
+    <script type="text/javascript" src="js/rs_dialog.js"></script>
+    <script type="text/javascript" src="js/rs_file_input.js"></script>
+    <script type="text/javascript" src="js/rs_helpers.js"></script>
+    <script type="text/javascript" src="js/rs_input.js"></script>
+    <script type="text/javascript" src="js/rs_planning.js"></script>
+    <script type="text/javascript" src="js/rs_select.js"></script>
+    <script type="text/javascript" src="js/rs_side_menu.js"></script>
+    <script type="text/javascript" src="js/rs_switch.js"></script>
+    <script type="text/javascript" src="js/rs_table.js"></script>
+    <script type="text/javascript" src="js/rs_textarea.js"></script>
+    <script type="text/javascript" src="js/rs_tooltips.js"></script>
+
+    <!-- Controller de la page -->
+    <script type="text/javascript" src="controller.js"></script>
+
+    <!--
+      IE < 9 ne reconnaît pas les balise sémantiques nécessaires au référencement naturel, ce qui peut perturber l'affichage.
+      Si le navigateur utilisé est concerné, un script permettant de les ignorer est inclus à la page. 
+    -->
+    <!--[if lt IE 9]>
+    <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- 
+      Initialisation du controller principal avant que le navigateur ne commence à interpréter les balises.
+      Certains éléments de la page font appel à des propriétés de l'objet "scope", déclarées et initialisées
+      au sein de cette fonction. (le menu, par exemple...)
+    -->
+    <script type="text/javascript">
+      document.currentController = new MainController();
+    </script>
+  </head>
+
+  <!-- Corps de la page -->
+  <body onload="document.currentController.postLoadInit()">
+    <div class="page-header">
+      <div class="banner-decoration"></div>
+      <div class="rs-logo" onclick="window.open('http://roquefort-softwares.com/')"></div>
+      <div class="banner-title"><span>RS WCL</span> : Documentation d'utilisation</div>
+    </div>
+    <div class="site-content">
+      <rs-side-menu menu-title="Menu de navigation" rs-model="scope.menu_items"></rs-side-menu>
+      <div class="separator"></div>
+      <div id="milieu">
+        <h1>Bienvenue</h1>
+        <p>Cette page décrit le fonctionnement de la <b>RS WCL</b>.</p>
+        <p>Des exemples de codes HTML et javascript vous y seront présentés pour chacun des composants qu'elle implémente, afin de vous permettre une prise en main rapide.</p>
+        <p>Vous pourrez également télécharger la dernière version de la librairie via le menu.</p>
+        <p>La présente page s'appuie sur la RS WCL. En effet, le menu à gauche de l'écran est une instance du composant <b>rs-side-menu</b>. Comme tous les composants de la librairie, son rendu peut être modifié avec CSS, afin de respecter une charte graphique donnée.</p>
+      </div>
+    </div>
+  </body>
+</html>

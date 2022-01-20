@@ -1,0 +1,139 @@
+/**
+ * @brief      Feuille de style appliquant la structure générale
+ *
+ * @author     François ROQUEFORT
+ * @date       14/01/2022
+ */
+@font-face {
+  font-family: "Licorice";
+  src: url("fonts/Licorice-Regular.ttf") format("truetype");
+}
+
+body {
+	margin: 0;
+	overflow-x: hidden;
+	background: #fdfff3;
+	color: #01387d;
+	-moz-user-select: none;		/* Firefox */
+	-webkit-user-select: none;	/* Chrome, Safari, Opéra depuis la version 15 */
+	-ms-user-select: none;		/* Internet explorer depuis la version 10 et Edge */
+	user-select: none;			/* Propriété standard */
+}
+
+/* Entête de page */
+.page-header {
+	width: 100%;
+	height: 10vw;
+	background: #d1f2ff;
+	margin-bottom: 0.5vw;
+	box-shadow: 0 0 0.5vw black;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	flex-wrap: nowrap;
+	
+	position: sticky;
+	top: 0;
+	z-index: 1;
+}
+.banner-decoration {
+  background: rgba(0, 132, 210, 0.25);
+  position: fixed;
+  top: 0;
+  left: -2vw;
+  width: 27vw;
+  height: 10vw;
+  transform: skewX(-19deg);
+}
+.rs-logo {
+	background: url('rs_logo.png');
+	background-size: contain;
+	aspect-ratio: 192/133;
+	height: 9vw;
+	margin: 0.5vw;
+	cursor: pointer;
+	z-index: 0;
+}
+.banner-title {
+	font-family: Licorice;
+	font-size: 5vw;
+	margin: 2.5vw;
+	color: #01387d;
+}
+.banner-title span {
+  background: rgba(255,255,255,0.6);
+  padding: 3vw;
+  padding-block-end: 0;
+  padding-block-start: 1vw;
+  border-radius: 50%;
+}
+
+/* Menu + contenu (détails du style du menu gérés par le composant -> css/rs_menu.css) */
+.site-content {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+	flex-wrap: nowrap;
+	width: 100vw;
+	margin-bottom: 1vw;
+	min-height: 84vh;
+}
+rs-side-menu { margin-top: 1.5vw; }
+.separator {
+  min-height: 100%;
+  width: 0.2vw;
+  background: linear-gradient(to bottom, transparent ,rgba(0,0,0,0.3) 50%, transparent);
+}
+#milieu { width: calc(100% - 30vw); }
+
+/* Style utilisé pour les templates */
+#milieu h1 { font-size: 2.5vw }
+#milieu h2 { font-size: 2.1vw }
+#milieu p {
+  font-size: 1.6vw;
+  text-indent: 2vw;
+}
+#milieu ul { font-size: 1.6vw; }
+#milieu .code {
+	resize: none;
+	white-space: pre;
+	overflow-wrap: normal;
+  overflow-x: scroll;
+	overflow-y: hidden;
+	width: 96%;
+	min-height: 0;
+  background: white;
+  border: 1px solid silver;
+  padding-left: 0.8vw;
+  font-size: 1.3vw;
+  font-family: monospace;
+}
+#milieu .tab-title {
+  font-size: 1.75vw;
+  font-weight: bold;
+  margin-block-start: 1em;
+  text-align: center;
+	background: linear-gradient(to bottom, #b4d1ff, #e0f5ff);
+	width: 97.7%;
+	border-radius: 3px;
+}
+#milieu button {
+  border: none;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8);
+  background: linear-gradient(to bottom, #666, #888 60%, #CCC);
+  color: #2d2d2d;
+  font-weight: bold;
+  font-size: 1.5vw;
+  padding: 1vw;
+  height: 4.5vw;
+  cursor: pointer;
+}
+#milieu button:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+#milieu button:hover {
+    background: linear-gradient(to bottom, #777, #999 60%, #DDD);
+}
