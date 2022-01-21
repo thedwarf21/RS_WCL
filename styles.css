@@ -49,7 +49,7 @@ body {
 .rs-logo {
 	background: url('rs_logo.png');
 	background-size: contain;
-	aspect-ratio: 192/133;
+	aspect-ratio: 1;
 	height: 9vw;
 	margin: 0.5vw;
 	cursor: pointer;
