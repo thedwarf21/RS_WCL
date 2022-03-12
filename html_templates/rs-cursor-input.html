@@ -12,20 +12,24 @@
 				 min-color="#85C1FF"
 				 mid-color="#FFF83D"
 				 max-color="#FE9D46"
+				 handle-color="#00F"
 				 rs-model="scope.cursor_value">
 </rs-cursor-input>
 
-<p>L'utilisateur peut choisir la valeur de deux manières différentes :</p>
+<p>L'utilisateur peut choisir la valeur de trois manières différentes :</p>
 <ul>
-	<li>par drag & drop du bouton du curseur</li>
-	<li>en cliquant sur la valeur affichée à droite</li>
+	<li>par drag & drop du curseur</li>
+	<li>en cliquant sur la barre colorée, à la position souhaitée</li>
+	<li>en éditant directement la valeur, à droite du curseur</li>
 </ul>
 
 <p>En effet, la valeur est affichée dans un champ de saisie modifiable.</p>
 
-<p>Le composant gérant la propriété <b>rs-model</b>, il est possible d'en synchroniser la valeur avec une propriété du <b>scope</b>. Ce qui signifie que toute modifiaction de la valeur de cette propriété mettra à jour l'interface et inversement.</p>
+<p>Le composant gérant la propriété <b>rs-model</b>, il est possible d'en synchroniser la valeur avec une propriété du <b>scope</b> de votre code de contrôle. Ce qui signifie que toute modifiaction de la valeur de cette propriété mettra à jour l'interface et inversement.</p>
 
 <p>Le pas (écart entre deux valeurs valides) est paramétrable, de mêmes que les valeurs minimale et maximale. En cas de saisie d'une valeur hors pas, la dernière valeur valide connue est ré-appliquée, tandis qu'en cas de saisie d'une valeur hors seuils de tolérance (supérieure à la maximale ou inféreieure à la minimale), le curseur se met en <b>erreur</b> et le bouton de réglage apparaît en rouge.</p>
+
+<p>Il est également possible de paramétrer la couleur de base de la poignée du curseur via l'attribut <b>handle-color</b>.</p>
 
 <p>Le curseur présenté ci-dessus est paramétré pour recevoir des valeurs entières comprises entre 0 et 10, inclus.</p>
 
@@ -44,9 +48,23 @@
 				 rs-readonly="true">
 </rs-cursor-input>
 
+<p>Enfin, vous pouvez également afficher un curseur décroissant</p>
+
+<rs-cursor-input titre="Curseur inversé"
+				 init-value="3"
+				 txt-unit="kg"
+				 step="1"
+				 min-value="0"
+				 max-value="10"
+				 min-color="#85C1FF"
+				 mid-color="#FFF83D"
+				 max-color="#FE9D46"
+				 reverse="true">
+</rs-cursor-input>
+
 <h2>Utilisation par template HTML</h2>
 <div class="tab-title">HTML</div>
-<textarea class="code" style="height: calc(27.6em + 20px)" readonly>
+<textarea class="code" style="height: calc(40.8em + 20px)" readonly>
 <rs-cursor-input titre="Curseur modifiable"
 				 init-value="5"
 				 txt-unit="kg"
@@ -56,6 +74,7 @@
 				 min-color="#85C1FF"
 				 mid-color="#FFF83D"
 				 max-color="#FE9D46"
+				 handle-color="#00F"
 				 rs-model="scope.cursor_value">
 </rs-cursor-input>
 
@@ -69,6 +88,18 @@
 				 mid-color="#A0A0A0"
 				 max-color="#717171"
 				 rs-readonly="true">
+</rs-cursor-input>
+
+<rs-cursor-input titre="Curseur inversé"
+				 init-value="3"
+				 txt-unit="kg"
+				 step="1"
+				 min-value="0"
+				 max-value="10"
+				 min-color="#85C1FF"
+				 mid-color="#FFF83D"
+				 max-color="#FE9D46"
+				 reverse="true">
 </rs-cursor-input>
 </textarea>
 
